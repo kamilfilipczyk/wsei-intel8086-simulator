@@ -36,7 +36,7 @@ const generateRandomValue = () => {
     const hexDigits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
     let generatedHexNumber = [];
     for (let i = 0; i < 4; i++) {
-        generatedHexNumber.push(hexDigits[Math.floor(Math.random() * 16)]);
+        generatedHexNumber.push(hexDigits[Math.floor(Math.random() * hexDigits.length)]);
     }
     return generatedHexNumber.join('');
 }
@@ -62,4 +62,6 @@ clearButton.addEventListener('click', () => {
     for (let i = 0; i < 4; i++) {
         registersElements[i].innerHTML = registers[i].value;
     }
+
+    isStarted = false;
 })
