@@ -4,30 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/styles.css">
     <script src="assets/script.js" defer></script>
     <title>Intel8086 Simulator by Kamil Filipczyk</title>
 </head>
 <body>
     <div class="container">
-        <div class="registers">
-            <div class="register-holder">
-                <label for="ax-value" class="register-label">AX</label>
-                <input type="text" name="ax-value" id="ax-value"/>
-            </div>
-            <div class="register-holder">
-                <label for="bx-value" class="register-label">BX</label>
-                <input type="text" name="bx-value" id="bx-value"/>
-            </div>
-            <div class="register-holder">
-                <label for="cx-value" class="register-label">CX</label>
-                <input type="text" name="cx-value" id="cx-value"/>
-            </div>
-            <div class="register-holder">
-                <label for="dx-value" class="register-label">DX</label>
-                <input type="text" name="dx-value" id="dx-value"/>
-            </div>
-        </div>
+        <section class="title">
+            <h1>Intel8086 Simulator</h1>
+        </section>
+        <section class="app">
+            <section class="registers">
+                <h1>registers</h1>
+                <div class="register-holder" id="ax">
+                    <h2>AX:</h2>
+                    <p id="ax-value">0000</p>
+                </div>
+                <div class="register-holder" id="bx">
+                    <h2>BX:</h2>
+                    <p id="bx-value">0000</p>
+                </div>
+                <div class="register-holder" id="cx">
+                    <h2>CX:</h2>
+                    <p id="cx-value">0000</p>
+                </div>
+                <div class="register-holder" id="dx">
+                    <h2>DX:</h2>
+                    <p id="dx-value">0000</p>
+                </div>
+            </section>
+            <section class="buttons">
+                <button id="set-button">start</button>
+                <button id="clear-button">clear</button>
+                <button id="mov-button">mov</button>
+                <button id="xchg-button">xchg</button>
+            </section>
+            <section>
+
+            </section>
+        </section>
+        <footer class="credits">
+            <p>by Kamil Filipczyk</p>
+        </footer>
     </div>
 </body>
 </html>
