@@ -63,7 +63,7 @@ setButton.addEventListener('click', () => {
     for (let i = 0; i < 4; i++) {
         registersElements[i].innerHTML = registers[i].value;
     }
-})
+});
 
 clearButton.addEventListener('click', () => {
     for (const register of registers) {
@@ -77,15 +77,11 @@ clearButton.addEventListener('click', () => {
     fromInputElement.value = "";
     toInputElement.value = "";
     isStarted = false;
-})
+});
 
 movButton.addEventListener('click', () => {
     const movFromEl = fromInputElement.value;
     const movToEl = toInputElement.value;
-
-    let movFromValue, movToValue;
-    let movFromIndex, movToIndex;
-    let tempVariable;
 
     if (movFromEl != "" && movToEl != "" && checkInput(movFromEl.toUpperCase(), movToEl.toUpperCase()) === true) {
 
@@ -127,4 +123,67 @@ movButton.addEventListener('click', () => {
             registersElements[i].innerHTML = registers[i].value;
         }
     }
-})
+});
+
+xchgButton.addEventListener('click', () => {
+    const xchgFromEl = fromInputElement.value;
+    const xchgToEl = toInputElement.value;
+    let valueHolder;
+
+    if (xchgFromEl != "" && xchgToEl != "" && checkInput(xchgFromEl.toUpperCase(), xchgToEl.toUpperCase()) === true) {
+
+        if (xchgFromEl.toUpperCase() === "AX") {
+            valueHolder = registers[0].value;
+            if (xchgToEl.toUpperCase() === "BX") {
+                registers[0].value = registers[1].value;
+                registers[1].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "CX") {
+                registers[0].value = registers[2].value;
+                registers[2].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "DX") {
+                registers[0].value = registers[3].value;
+                registers[3].value = valueHolder;
+            }
+        } else if (xchgFromEl.toUpperCase() === "BX") {
+            valueHolder = registers[1].value;
+            if (xchgToEl.toUpperCase() === "AX") {
+                registers[1].value = registers[0].value;
+                registers[0].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "CX") {
+                registers[1].value = registers[2].value;
+                registers[2].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "DX") {
+                registers[1].value = registers[3].value;
+                registers[3].value = valueHolder;
+            }
+        } else if (xchgFromEl.toUpperCase() === "CX") {
+            valueHolder = registers[2].value;
+            if (xchgToEl.toUpperCase() === "BX") {
+                registers[2].value = registers[1].value;
+                registers[1].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "AX") {
+                registers[2].value = registers[0].value;
+                registers[0].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "DX") {
+                registers[2].value = registers[3].value;
+                registers[3].value = valueHolder;
+            }
+        } else if (xchgFromEl.toUpperCase() === "DX") {
+            valueHolder = registers[3].value;
+            if (xchgToEl.toUpperCase() === "BX") {
+                registers[3].value = registers[1].value;
+                registers[1].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "CX") {
+                registers[3].value = registers[2].value;
+                registers[2].value = valueHolder;
+            } else if (xchgToEl.toUpperCase() === "AX") {
+                registers[3].value = registers[0].value;
+                registers[0].value = valueHolder;
+            }
+        }
+
+        for (let i = 0; i < 4; i++) {
+            registersElements[i].innerHTML = registers[i].value;
+        }
+    }
+});
