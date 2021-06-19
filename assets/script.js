@@ -1,18 +1,21 @@
 const buttons = document.querySelector('.buttons');
 
-let registersElements = [];
+const registersElements = [];
 
 registersElements.push(document.getElementById('ax-value'));
 registersElements.push(document.getElementById('bx-value'));
 registersElements.push(document.getElementById('cx-value'));
 registersElements.push(document.getElementById('dx-value'));
 
+const fromInputElement = document.getElementById('fromInput');
+const toInputElement = document.getElementById('toInput');
+
 const setButton = buttons.children[0];
 const clearButton = buttons.children[1];
 const movButton = buttons.children[2];
 const xchgButton = buttons.children[3];
 
-let registers = [{
+const registers = [{
         name: 'ax',
         value: '0000'
     },
@@ -63,5 +66,11 @@ clearButton.addEventListener('click', () => {
         registersElements[i].innerHTML = registers[i].value;
     }
 
+    fromInputElement.value = null;
+    toInputElement.value = null;
     isStarted = false;
+})
+
+movButton.addEventListener('click', () => {
+
 })
