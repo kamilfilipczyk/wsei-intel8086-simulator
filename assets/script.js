@@ -44,6 +44,14 @@ const generateRandomValue = () => {
     return generatedHexNumber.join('');
 }
 
+const checkInput = (regA, regB) => {
+    if ((regA === "AX" || regA === "BX" || regA === "CX" || regA === "DX") && (regB === "AX" || regB === "BX" || regB === "CX" || regB === "DX")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 setButton.addEventListener('click', () => {
     setButton.innerHTML = "random";
     isStarted = true;
@@ -66,11 +74,57 @@ clearButton.addEventListener('click', () => {
         registersElements[i].innerHTML = registers[i].value;
     }
 
-    fromInputElement.value = null;
-    toInputElement.value = null;
+    fromInputElement.value = "";
+    toInputElement.value = "";
     isStarted = false;
 })
 
 movButton.addEventListener('click', () => {
+    const movFromEl = fromInputElement.value;
+    const movToEl = toInputElement.value;
 
+    let movFromValue, movToValue;
+    let movFromIndex, movToIndex;
+    let tempVariable;
+
+    if (movFromEl != "" && movToEl != "" && checkInput(movFromEl.toUpperCase(), movToEl.toUpperCase()) === true) {
+
+        if (movFromEl.toUpperCase() === "AX") {
+            if (movToEl.toUpperCase() === "BX") {
+                registers[1].value = registers[0].value;
+            } else if (movToEl.toUpperCase() === "CX") {
+                registers[2].value = registers[0].value;
+            } else if (movToEl.toUpperCase() === "DX") {
+                registers[3].value = registers[0].value;
+            }
+        } else if (movFromEl.toUpperCase() === "BX") {
+            if (movToEl.toUpperCase() === "AX") {
+                registers[0].value = registers[1].value;
+            } else if (movToEl.toUpperCase() === "CX") {
+                registers[2].value = registers[1].value;
+            } else if (movToEl.toUpperCase() === "DX") {
+                registers[3].value = registers[1].value;
+            }
+        } else if (movFromEl.toUpperCase() === "CX") {
+            if (movToEl.toUpperCase() === "BX") {
+                registers[1].value = registers[2].value;
+            } else if (movToEl.toUpperCase() === "AX") {
+                registers[0].value = registers[2].value;
+            } else if (movToEl.toUpperCase() === "DX") {
+                registers[3].value = registers[2].value;
+            }
+        } else if (movFromEl.toUpperCase() === "DX") {
+            if (movToEl.toUpperCase() === "BX") {
+                registers[1].value = registers[3].value;
+            } else if (movToEl.toUpperCase() === "CX") {
+                registers[2].value = registers[3].value;
+            } else if (movToEl.toUpperCase() === "AX") {
+                registers[0].value = registers[3].value;
+            }
+        }
+
+        for (let i = 0; i < 4; i++) {
+            registersElements[i].innerHTML = registers[i].value;
+        }
+    }
 })
